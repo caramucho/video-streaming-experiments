@@ -17,6 +17,13 @@ NOISE_LOW = 0.9
 NOISE_HIGH = 1.1
 VIDEO_SIZE_FILE = './video_size_'
 
+# more random parameters than fixed env
+#
+# simulated network environment and video player
+# add a multiplicative noise to the delay (too large)
+# fixed link rtt
+# more features: skip frames, fast forward, slow, backwards
+
 
 class Environment:
     def __init__(

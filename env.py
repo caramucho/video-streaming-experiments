@@ -19,7 +19,11 @@ VIDEO_SIZE_FILE = './video_size_'
 
 
 class Environment:
-    def __init__(self, all_cooked_time, all_cooked_bw, random_seed=RANDOM_SEED):
+    def __init__(
+            self,
+            all_cooked_time,
+            all_cooked_bw,
+            random_seed=RANDOM_SEED):
         assert len(all_cooked_time) == len(all_cooked_bw)
 
         np.random.seed(random_seed)
@@ -109,8 +113,8 @@ class Environment:
             # we need to skip some network bandwidth here
             # but do not add up the delay
             drain_buffer_time = self.buffer_size - BUFFER_THRESH
-            sleep_time = np.ceil(drain_buffer_time / DRAIN_BUFFER_SLEEP_TIME) * \
-                DRAIN_BUFFER_SLEEP_TIME
+            sleep_time = np.ceil(
+                drain_buffer_time / DRAIN_BUFFER_SLEEP_TIME) * DRAIN_BUFFER_SLEEP_TIME
             self.buffer_size -= sleep_time
 
             while True:

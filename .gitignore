@@ -1,3 +1,4 @@
 cooked_traces/
 video_size_*
 __pycache__/
+results/

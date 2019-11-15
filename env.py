@@ -63,7 +63,7 @@ class Environment:
                 * B_IN_MB / BITS_IN_BYTE  # bytes/s
             duration = self.cooked_time[self.mahimahi_ptr] \
                 - self.last_mahimahi_time
-
+            # total payloads size downloaded bytes
             packet_payload = throughput * duration * PACKET_PAYLOAD_PORTION
 
             if video_chunk_counter_sent + packet_payload > video_chunk_size:
@@ -159,6 +159,10 @@ class Environment:
             next_video_chunk_sizes.append(
                 self.video_size[i][self.video_chunk_counter])
 
+        # delay - time from click until start to play
+        # sleep_time - sleep when buffer size > buffer_tresh
+        # buffer size
+        # rebufed time
         return delay, \
             sleep_time, \
             return_buffer_size / MILLISECONDS_IN_SECOND, \
@@ -173,3 +177,4 @@ if __name__ == "__main__":
     all_cooked_time, all_cooked_bw, _ = load_trace()
     env = Environment(all_cooked_time, all_cooked_bw)
     env.get_video_chunk(0)
+    env.get_video_chunk(1)

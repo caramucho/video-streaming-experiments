@@ -9,8 +9,8 @@
     "python.linting.flake8Args": [
         "--ignore=E501,W504"
     ],
-    "python.formatting.autopep8Args": [
-        "--aggressive",
-        "--aggressive",
-    ]
+    // "python.formatting.autopep8Args": [
+    //     // "--aggressive",
+    //     "--aggressive",
+    // ]
 }

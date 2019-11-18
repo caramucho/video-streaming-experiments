@@ -287,9 +287,10 @@ def main():
 
             if video_count >= len(all_file_names):
                 break
-
+            # stop test
+            break
             log_path = LOG_FILE + '_' + all_file_names[net_env.trace_idx]
-            log_file = open(log_path, 'wb')
+            log_file = open(log_path, 'w')
 
 
 if __name__ == '__main__':

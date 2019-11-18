@@ -9,8 +9,8 @@ S_INFO = 5  # bit_rate, buffer_size, rebuffering_time, bandwidth_measurement, ch
 S_LEN = 8  # take how many frames in the past
 A_DIM = 6  # all available bitrates
 MPC_FUTURE_CHUNK_COUNT = 5
-ACTOR_LR_RATE = 0.0001
-CRITIC_LR_RATE = 0.001
+# ACTOR_LR_RATE = 0.0001
+# CRITIC_LR_RATE = 0.001
 VIDEO_BIT_RATE = [300, 750, 1200, 1850, 2850, 4300]  # Kbps
 BITRATE_REWARD = [1, 2, 3, 12, 15, 20]
 BUFFER_NORM_FACTOR = 10.0
@@ -75,7 +75,7 @@ def main():
                               all_cooked_bw=all_cooked_bw)
 
     log_path = LOG_FILE + '_' + all_file_names[net_env.trace_idx]
-    log_file = open(log_path, 'wb')
+    log_file = open(log_path, 'w')
 
     time_stamp = 0
     last_bit_rate = DEFAULT_QUALITY
@@ -84,9 +84,9 @@ def main():
     action_vec = np.zeros(A_DIM)
     action_vec[bit_rate] = 1
 
-    s_batch = [np.zeros((S_INFO, S_LEN))]
-    a_batch = [action_vec]
-    r_batch = []
+    s_batch = [np.zeros((S_INFO, S_LEN))]  # state batch
+    a_batch = [action_vec]  # action batch
+    r_batch = []  # reward batch
     # entropy_record = []
 
     video_count = 0
@@ -99,7 +99,7 @@ def main():
         # the action is from the last decision
         # this is to make the framework similar to the real
         delay, sleep_time, buffer_size, rebuf, \
-            video_chunk_size, \
+            video_chunk_size, _, \
             end_of_video, video_chunk_remain = \
             net_env.get_video_chunk(bit_rate)
 
